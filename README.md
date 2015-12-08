@@ -22,7 +22,7 @@ Ubuntu 14.04 based vagrant box for LAMP development based on the excellent proje
 git clone git@github.com:werx/box.git
 cd box
 ```
-Comment/uncomment installation commands as needed, then
+Comment/uncomment installation commands as needed in `Vagrantfile`, then
 
 ```bash
 vagrant up
