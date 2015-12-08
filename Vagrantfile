@@ -91,6 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", inline: "sudo mv /home/vagrant/vhost /usr/local/bin/vhost; sudo chmod guo+x /usr/local/bin/vhost"
 
     # PHP
+    config.vm.provision "file", source: "./vagrant-provision/config/vagrant.ini", destination: "/home/vagrant/vagrant.ini"
     config.vm.provision "shell", path: "./vagrant-provision/scripts/php.sh", args: [PHP_TIMEZONE, PHP_VERSION]
 
     # Provision Composer
