@@ -113,7 +113,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", path: "./vagrant-provision/scripts/sqlite.sh"
 
     # Provision MariaDB. You can install MySQL OR MariaDB, but not both.
-    #config.vm.provision "shell", path: "./vagrant-provision/scripts/mariadb.sh", args: [MYSQL_ROOT_PASSWORD, MYSQL_ENABLE_REMOTE]
+    config.vm.provision "shell", path: "./vagrant-provision/scripts/mariadb.sh", args: [MYSQL_ROOT_PASSWORD, MYSQL_ENABLE_REMOTE]
 
     # Install Adminer GUI Database client. Will be available at http://192.168.22.10/adminer.php
     config.vm.provision "shell", path: "./vagrant-provision/scripts/adminer.sh"
