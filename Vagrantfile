@@ -122,7 +122,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #config.vm.provision "shell", path: "./vagrant-provision/scripts/mysql.sh", args: [MYSQL_ROOT_PASSWORD, MYSQL_VERSION, MYSQL_ENABLE_REMOTE]
 
     # Provision PostgreSQL
-    #config.vm.provision "shell", path: "#{github_url}/scripts/pgsql.sh", args: PGSQL_ROOT_PASSWORD
+    #config.vm.provision "shell", path: "./vagrant-provision/scripts/pgsql.sh", args: PGSQL_ROOT_PASSWORD
 
     ####
     # In-Memory Stores
