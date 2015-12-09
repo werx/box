@@ -14,7 +14,7 @@ if [[ $APACHE_IS_INSTALLED -eq 0 ]]; then
     fi
 
     sudo mkdir /usr/share/vagrant-web-tools
-    sudo cp /home/vagrant/vagrant-web-tools.php /usr/share/vagrant-web-tools/index.php
+    sudo mv /home/vagrant/vagrant-web-tools.php /usr/share/vagrant-web-tools/index.php
     sudo tee /etc/apache2/conf-available/vagrant-tools.conf <<EOL
 Alias /vagrant-tools /usr/share/vagrant-web-tools
 
