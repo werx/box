@@ -57,9 +57,8 @@ xdebug.var_display_max_data = 1024
 EOF
 
 # Extra INI Settings.
-
-cat /home/vagrant/vagrant.ini | sudo tee /etc/php5/apache2/conf.d/vagrant.ini
-cat /home/vagrant/vagrant.ini | sudo tee /etc/php5/cli/conf.d/vagrant.ini
+cat /home/vagrant/php.ini | sudo tee /etc/php5/apache2/conf.d/vagrant.ini
+cat /home/vagrant/php.ini | sudo tee /etc/php5/cli/conf.d/vagrant.ini
 
 # Test if Apache is installed
 apache2 -v > /dev/null 2>&1

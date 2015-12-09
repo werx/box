@@ -43,4 +43,6 @@ sudo a2enmod mpm_prefork rewrite actions ssl php5
 # Create a virtualhost to start, with SSL certificate
 sudo vhost -s $1.xip.io -a $1 -d /var/www$public_folder -p /etc/ssl/xip.io -c xip.io -a $3
 sudo a2dissite 000-default
+
+# Restart apache to wrap it up.
 sudo service apache2 restart

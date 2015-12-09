@@ -74,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Shared folder
     config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
-
+    
     config.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       vb.cpus = 2
@@ -91,7 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", inline: "sudo mv /home/vagrant/vhost /usr/local/bin/vhost; sudo chmod guo+x /usr/local/bin/vhost"
 
     # PHP
-    config.vm.provision "file", source: "./vagrant-provision/config/vagrant.ini", destination: "/home/vagrant/vagrant.ini"
+    config.vm.provision "file", source: "./vagrant-provision/customizations/php.ini", destination: "/home/vagrant/php.ini"
     config.vm.provision "shell", path: "./vagrant-provision/scripts/php.sh", args: [PHP_TIMEZONE, PHP_VERSION]
 
     # Provision Composer
@@ -103,6 +103,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Provision Apache Base
     config.vm.provision "shell", path: "./vagrant-provision/scripts/apache.sh", args: [SERVER_IP, PUBLIC_FOLDER, HOSTNAME]
+
+    # Custom apache rules
+    config.vm.provision "file", source: "./vagrant-provision/customizations/apache.conf", destination: "/home/vagrant/apache.conf"
+    config.vm.provision "shell", inline: "sudo mv /home/vagrant/apache.conf /etc/apache2/conf-available/vagrant-custom.conf; sudo a2enconf vagrant-custom; sudo service apache2 restart"
 
     ####
     # Databases
@@ -170,6 +174,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ####
     # Misc tools
     ##########
+
+    # CRON
+    config.vm.provision "file", source: "./vagrant-provision/customizations/crontab.txt", destination: "/home/vagrant/crontab.txt"
+    config.vm.provision "shell", privileged: false, inline: "crontab /home/vagrant/crontab.txt"
 
     # Install Image Magick
     config.vm.provision "shell", path: "./vagrant-provision/scripts/imagick.sh"
