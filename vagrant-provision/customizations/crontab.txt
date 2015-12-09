@@ -1,1 +1,3 @@
 # Edit this file to add CRON jobs for the vagrant user using standard CRON syntax.
+# See http://crontab-generator.org/ for a nice crontab generator.
+#* * * * * date >> /tmp/cron-every-minute.txt >/dev/null 2>&1

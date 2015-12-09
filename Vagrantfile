@@ -74,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Shared folder
     config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
-    
+
     config.vm.provider "virtualbox" do |vb|
       vb.memory = 1024
       vb.cpus = 2
@@ -175,10 +175,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Misc tools
     ##########
 
-    # CRON
-    config.vm.provision "file", source: "./vagrant-provision/customizations/crontab.txt", destination: "/home/vagrant/crontab.txt"
-    config.vm.provision "shell", privileged: false, inline: "crontab /home/vagrant/crontab.txt"
-
     # Install Image Magick
     config.vm.provision "shell", path: "./vagrant-provision/scripts/imagick.sh"
+
+    ####
+    # Run Always. Rebuilds with every vagrant up / vagrant reload
+    ##########
+
+    # CRON.
+    config.vm.provision "file", source: "./vagrant-provision/customizations/crontab.txt", destination: "/home/vagrant/crontab.txt", run: "always"
+    config.vm.provision "shell", privileged: false, inline: "crontab /home/vagrant/crontab.txt; echo \"Installed CRON\"; crontab -l", run: "always"
+
+    # Custom shell script with any customizations you want.
+    config.vm.provision "file", source: "./vagrant-provision/customizations/bash.sh", destination: "/home/vagrant/run-always.sh", run: "always"
+    config.vm.provision "shell", inline: "sudo chmod a+x /home/vagrant/run-always.sh; /home/vagrant/run-always.sh", run: "always"
 end
