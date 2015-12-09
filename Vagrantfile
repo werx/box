@@ -34,10 +34,10 @@ PGSQL_ROOT_PASSWORD   = "root"   # We'll assume user "root"
 PHP_TIMEZONE          = "UTC"    # http://php.net/manual/en/timezones.php
 PHP_VERSION           = "5.6"     # Options: 5.5 | 5.6
 RUBY_GEMS             = [        # List any Ruby Gems that you want to install
-  "jekyll",
-  "github-pages",
-  "sass",
-  "compass",
+  #"jekyll",
+  #"github-pages",
+  #"sass",
+  #"compass",
 ]
 
 # PHP Options
@@ -56,7 +56,7 @@ NODEJS_PACKAGES       = [          # List any global NodeJS packages that you wa
   "grunt-cli",
   "gulp",
   "bower",
-  "yo",
+  #"yo",
 ]
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
