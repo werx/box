@@ -76,8 +76,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]
 
     config.vm.provider "virtualbox" do |vb|
-      vb.memory = 1024
-      vb.cpus = 2
+      vb.memory = SERVER_MEMORY
+      vb.cpus = SERVER_CPUS
       vb.name = "werxbox"
     end
 
