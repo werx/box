@@ -40,6 +40,8 @@ sudo usermod -a -G www-data vagrant
 #sudo a2enmod mpm_prefork mpm_worker rewrite actions ssl php5
 sudo a2enmod mpm_prefork rewrite actions ssl php5
 
+sudo rm -rf /var/www/html
+
 # Create a virtualhost to start, with SSL certificate
 sudo vhost -s $1.xip.io -a $1 -d /var/www$public_folder -p /etc/ssl/xip.io -c xip.io -a $3
 sudo a2dissite 000-default
